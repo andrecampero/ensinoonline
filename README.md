@@ -49,23 +49,30 @@ Este projeto utiliza **Laravel Sail** (Docker), o que torna a configuração do 
 4. **Inicie os containers Docker:**
    ```bash
    ./vendor/bin/sail up -d
+   # OU diretamente com docker-compose:
+   docker-compose up -d
    ```
-   *(Ou se estiver usando docker-compose diretamente: `docker-compose up -d`)*
 
 5. **Gere a chave da aplicação:**
    ```bash
    ./vendor/bin/sail artisan key:generate
+   # OU:
+   docker-compose exec ensinoonline php artisan key:generate
    ```
 
 6. **Execute as migrações e popule o banco de dados (Seeder):**
    ```bash
    ./vendor/bin/sail artisan migrate:fresh --seed
+   # OU:
+   docker-compose exec ensinoonline php artisan migrate:fresh --seed
    ```
 
-7. **Instale as dependências do Frontend (Node/NPM) e compile os assets:**
+7. **Instale as dependências do Frontend e compile os assets:**
    ```bash
-   ./vendor/bin/sail npm install
-   ./vendor/bin/sail npm run build
+   ./vendor/bin/sail npm install && ./vendor/bin/sail npm run build
+   # OU:
+   docker-compose exec ensinoonline npm install
+   docker-compose exec ensinoonline npm run build
    ```
 
 8. **Acesse o sistema:**
@@ -76,8 +83,6 @@ Este projeto utiliza **Laravel Sail** (Docker), o que torna a configuração do 
 ## Logins de Exemplo
 
 O `DatabaseSeeder` já popula o banco com usuários de teste para cada perfil. A senha padrão para **TODOS** os usuários abaixo é:
-
-**Senha:** `Ensino@2026Online`
 
 ### 🛡️ Administrador
 - **Email:** `admin@ensino.com`
@@ -103,4 +108,7 @@ Para otimização imediata em ambiente Windows (filesystem montado), execute:
 ```bash
 ./vendor/bin/sail artisan optimize
 ./vendor/bin/sail artisan view:cache
+# OU:
+docker-compose exec ensinoonline php artisan optimize
+docker-compose exec ensinoonline php artisan view:cache
 ```
