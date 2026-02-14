@@ -1,8 +1,8 @@
-# Ensino Online
+# Portal Administrativo - Ensino Online
 
 ## Descrição do Projeto
 
-O **Ensino Online** é um sistema de gestão educacional desenvolvido com as tecnologias mais modernas do ecossistema PHP e Laravel. Seu objetivo é facilitar a administração de cursos, disciplinas, professores e alunos em uma plataforma intuitiva e responsiva.
+O **Portal Administrativo - Ensino Online** é um sistema de gestão educacional desenvolvido com as tecnologias mais modernas do ecossistema PHP e Laravel. Seu objetivo é facilitar a administração de cursos, disciplinas, professores e alunos em uma plataforma intuitiva e responsiva.
 
 O sistema permite:
 - **Gestão de Alunos:** Matrículas, acompanhamento e cadastro.
@@ -112,3 +112,39 @@ Para otimização imediata em ambiente Windows (filesystem montado), execute:
 docker-compose exec ensinoonline php artisan optimize
 docker-compose exec ensinoonline php artisan view:cache
 ```
+
+---
+
+## Prints do Portal Administrativo - Ensino Online
+
+Aqui estão algumas capturas de tela das principais funcionalidades do sistema:
+
+### 1. Tela de Login
+![Login](resources/screenshots/1-login.png)
+
+### 2. Dashboard Principal
+![Dashboard](resources/screenshots/2-dashboard.png)
+
+### 3. Gerenciamento de Professores
+![Professores](resources/screenshots/3-professores.png)
+
+### 4. Cadastro de Professor (Modal)
+![Adicionar Professor](resources/screenshots/4-professores_add.png)
+
+### 5. Gerenciamento de Alunos
+![Alunos](resources/screenshots/5-alunos.png)
+
+### 6. Gerenciamento de Cursos
+![Cursos](resources/screenshots/6-cursos.png)
+
+### 7. Gerenciamento de Disciplinas
+![Disciplinas](resources/screenshots/7-disciplinas.png)
+
+### 8. Gestão de Matrículas
+![Matrículas](resources/screenshots/8-matriculas.png)
+
+### 9. Realizar Nova Matrícula
+![Adicionar Matrícula](resources/screenshots/9-matricula_add.png)
+
+### 10. Relatório de Faixa Etária (Média de Idade por Curso)
+![Relatórios](resources/screenshots/10-relatorio_media_idade.png)
