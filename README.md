@@ -1,59 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ensino Online
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descrição do Projeto
 
-## About Laravel
+O **Ensino Online** é um sistema de gestão educacional desenvolvido com as tecnologias mais modernas do ecossistema PHP e Laravel. Seu objetivo é facilitar a administração de cursos, disciplinas, professores e alunos em uma plataforma intuitiva e responsiva.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O sistema permite:
+- **Gestão de Alunos:** Matrículas, acompanhamento e cadastro.
+- **Gestão de Professores:** Atribuição de disciplinas e cursos.
+- **Cursos e Disciplinas:** Organização curricular completa.
+- **Dashboard Administrativo:** Visão geral das métricas da escola.
+- **Relatórios:** Análise de faixa etária e perfil dos alunos.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A interface foi construída com foco em UX/UI, utilizando componentes modernos e design limpo.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Como Rodar o Projeto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Este projeto utiliza **Laravel Sail** (Docker), o que torna a configuração do ambiente extremamente simples.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Pré-requisitos
+- Git
+- Docker Desktop (instalado e rodando)
 
-## Laravel Sponsors
+### Passo a Passo
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/andrecampero/ensinoonline.git
+   cd ensinoonline
+   ```
 
-### Premium Partners
+2. **Instale as dependências do Composer (caso não tenha o diretório vendor):**
+   ```bash
+   docker run --rm \
+       -u "$(id -u):$(id -g)" \
+       -v "$(pwd):/var/www/html" \
+       -w /var/www/html \
+       laravelsail/php83-composer:latest \
+       composer install --ignore-platform-reqs
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. **Copie o arquivo de ambiente:**
+   ```bash
+   cp .env.example .env
+   ```
 
-## Contributing
+4. **Inicie os containers Docker:**
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
+   *(Ou se estiver usando docker-compose diretamente: `docker-compose up -d`)*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Gere a chave da aplicação:**
+   ```bash
+   ./vendor/bin/sail artisan key:generate
+   ```
 
-## Code of Conduct
+6. **Execute as migrações e popule o banco de dados (Seeder):**
+   ```bash
+   ./vendor/bin/sail artisan migrate:fresh --seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. **Instale as dependências do Frontend (Node/NPM) e compile os assets:**
+   ```bash
+   ./vendor/bin/sail npm install
+   ./vendor/bin/sail npm run build
+   ```
 
-## Security Vulnerabilities
+8. **Acesse o sistema:**
+   Abra seu navegador em: [http://localhost](http://localhost)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## Logins de Exemplo
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+O `DatabaseSeeder` já popula o banco com usuários de teste para cada perfil. A senha padrão para **TODOS** os usuários abaixo é:
+
+**Senha:** `Ensino@2026Online`
+
+### 🛡️ Administrador
+- **Email:** `admin@ensino.com`
+- **Acesso:** Total ao sistema.
+
+### 👨‍🏫 Professores
+- **Prof. Jubilut:** `jubilut@ensino.com` (Disciplinas de Biologia)
+- **Prof. Allan:** `allan@ensino.com.br` (Disciplinas de Matemática)
+- **Prof. João:** `joaop@ensino.com`
+- **Prof. Fabio:** `fabiop@ensino.com`
+
+### 🎓 Alunos
+- **Emanuel Aluno:** `emanuel_a@ensino.com`
+- **Felipe Aluno:** `felipe@ensino.com`
+
+---
+
+## Observações de Performance
+
+Se estiver rodando em **Windows** via Docker Desktop, recomenda-se fortemente o uso do **WSL2** para hospedar os arquivos do projeto, garantindo uma performance muito superior no carregamento das páginas.
+
+Para otimização imediata em ambiente Windows (filesystem montado), execute:
+```bash
+./vendor/bin/sail artisan optimize
+./vendor/bin/sail artisan view:cache
+```
