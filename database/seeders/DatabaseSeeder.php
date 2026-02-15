@@ -144,14 +144,14 @@ class DatabaseSeeder extends Seeder
                 'titulo' => 'Genética',
                 'descricao' => 'Estudo dos genes e hereditariedade.',
                 'curso_id' => 1, // Biologia
-                'professor_id' => 5, // Jubilut
+                'usuarios_id' => 5, // Jubilut
             ],
             [
                 'id' => 2,
                 'titulo' => 'Formas Geométricas',
                 'descricao' => 'Estudo de formas geométricas',
                 'curso_id' => 2, // Matematica
-                'professor_id' => 6, // Allan
+                'usuarios_id' => 6, // Allan
             ]
         ];
 
@@ -165,11 +165,11 @@ class DatabaseSeeder extends Seeder
         // 5. Criar Matrículas
         $matriculas = [
             // User 2 (Emanuel) no Curso 1 (Biologia)
-            ['id' => 1, 'user_id' => 2, 'curso_id' => 1],
+            ['id' => 1, 'usuarios_id' => 2, 'curso_id' => 1],
             // User 3 (Felipe) no Curso 2 (Matematica)
-            ['id' => 2, 'user_id' => 3, 'curso_id' => 2],
+            ['id' => 2, 'usuarios_id' => 3, 'curso_id' => 2],
             // User 2 (Emanuel) no Curso 2 (Matematica)
-            ['id' => 3, 'user_id' => 2, 'curso_id' => 2],
+            ['id' => 3, 'usuarios_id' => 2, 'curso_id' => 2],
         ];
 
         foreach ($matriculas as $data) {

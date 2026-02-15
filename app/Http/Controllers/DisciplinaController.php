@@ -20,7 +20,7 @@ class DisciplinaController extends Controller
         if (auth()->user()->isAluno()) {
             abort(403);
         }
-        $query = Disciplina::with(['curso', 'professor']);
+        $query = Disciplina::with(['curso', 'usuario']);
 
         if ($request->filled('search')) {
             $search = $request->search;
@@ -30,7 +30,7 @@ class DisciplinaController extends Controller
                     ->orWhereHas('curso', function ($q) use ($search) {
                         $q->where('titulo', 'like', "%{$search}%");
                     })
-                    ->orWhereHas('professor', function ($q) use ($search) {
+                    ->orWhereHas('usuario', function ($q) use ($search) {
                         $q->where('name', 'like', "%{$search}%");
                     });
             });
@@ -51,7 +51,7 @@ class DisciplinaController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'curso_id' => 'required|exists:cursos,id',
-            'professor_id' => 'required|exists:users,id',
+            'usuarios_id' => 'required|exists:usuarios,id',
         ]);
 
         \App\Models\Disciplina::create($request->all());
@@ -64,7 +64,7 @@ class DisciplinaController extends Controller
         $request->validate([
             'titulo' => 'required|string|max:255',
             'curso_id' => 'required|exists:cursos,id',
-            'professor_id' => 'required|exists:users,id',
+            'usuarios_id' => 'required|exists:usuarios,id',
         ]);
 
         $disciplina->update($request->all());

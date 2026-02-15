@@ -39,18 +39,20 @@
                   @forelse($matriculas as $matricula)
                      <tr>
                         <td class="ps-4">
-                           @if($matricula->user)
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar-sm bg-primary-soft rounded-circle text-primary me-2 d-flex align-items-center justify-content-center"
-                                        style="width: 32px; height: 32px; background-color: rgba(90, 90, 90, 0.1);">
-                                        {{ substr($matricula->user->name, 0, 1) }}
-                                    </div>
-                                    <div>
-                                        <span class="fw-semibold text-dark">{{ $matricula->user->name }}</span>
-                                        <br>
-                                        <small class="text-muted" style="font-size: 0.75rem;">{{ $matricula->user->email }}</small>
-                                    </div>
-                                </div>
+                           @if($matricula->usuario)
+                              <div class="d-flex align-items-center">
+                                 <div
+                                    class="avatar-sm bg-primary-soft rounded-circle text-primary me-2 d-flex align-items-center justify-content-center"
+                                    style="width: 32px; height: 32px; background-color: rgba(90, 90, 90, 0.1);">
+                                    {{ substr($matricula->usuario->name, 0, 1) }}
+                                 </div>
+                                 <div>
+                                    <span class="fw-semibold text-dark">{{ $matricula->usuario->name }}</span>
+                                    <br>
+                                    <small class="text-muted"
+                                       style="font-size: 0.75rem;">{{ $matricula->usuario->email }}</small>
+                                 </div>
+                              </div>
                            @else
                               <span class="text-danger italic">Aluno Removido</span>
                            @endif
@@ -63,19 +65,20 @@
                            @endif
                         </td>
                         <td>
-                           <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">Ativa</span>
+                           <span
+                              class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">Ativa</span>
                         </td>
                         @if(auth()->user()->role === 'admin')
-                        <td class="text-end pe-4">
-                           <form action="{{ route('matriculas.destroy', $matricula) }}" method="POST" class="d-inline">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-light text-danger border-0"
-                                 onclick="return confirm('Tem certeza que deseja cancelar esta matrícula?')" title="Excluir">
-                                 <i class="fas fa-trash"></i>
-                              </button>
-                           </form>
-                        </td>
+                           <td class="text-end pe-4">
+                              <form action="{{ route('matriculas.destroy', $matricula) }}" method="POST" class="d-inline">
+                                 @csrf
+                                 @method('DELETE')
+                                 <button type="submit" class="btn btn-sm btn-light text-danger border-0"
+                                    onclick="return confirm('Tem certeza que deseja cancelar esta matrícula?')" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                 </button>
+                              </form>
+                           </td>
                         @endif
                      </tr>
                   @empty
@@ -105,7 +108,7 @@
                <div class="modal-body py-4">
                   <div class="mb-3">
                      <label class="form-label fw-semibold">Aluno *</label>
-                     <select name="user_id" class="form-select rounded-3" required>
+                     <select name="usuarios_id" class="form-select rounded-3" required>
                         <option value="">Selecione um aluno...</option>
                         @foreach($alunos as $aluno)
                            <option value="{{ $aluno->id }}">{{ $aluno->name }} ({{ $aluno->email }})</option>
@@ -134,7 +137,7 @@
 
    <script>
       function selectAluno(alunoId) {
-         const select = document.querySelector('select[name="user_id"]');
+         const select = document.querySelector('select[name="usuarios_id"]');
          select.value = alunoId;
       }
    </script>

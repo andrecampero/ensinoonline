@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Disciplina extends Model
 {
-    protected $fillable = ['titulo', 'descricao', 'curso_id', 'professor_id'];
+    protected $fillable = ['titulo', 'descricao', 'curso_id', 'usuarios_id'];
 
     public function curso()
     {
         return $this->belongsTo(Curso::class);
     }
 
-    public function professor()
+    public function usuario()
     {
-        return $this->belongsTo(User::class, 'professor_id');
+        return $this->belongsTo(User::class, 'usuarios_id');
     }
 }

@@ -53,7 +53,7 @@ class User extends Authenticatable
 
     public function matriculas()
     {
-        return $this->hasMany(Matricula::class);
+        return $this->hasMany(Matricula::class, 'usuarios_id');
     }
 
     public function perfil()

@@ -22,12 +22,12 @@ class RelatorioController extends Controller
 
       $dados = [];
       // Carrega cursos com matrículas e usuários (alunos)
-      $cursos = Curso::with(['matriculas.user'])->get();
+      $cursos = Curso::with(['matriculas.usuario'])->get();
 
       foreach ($cursos as $curso) {
          // Filtra usuários válidos e com data de nascimento preenchida
          $alunos = $curso->matriculas->map(function ($matricula) {
-            return $matricula->user;
+            return $matricula->usuario;
          })->filter(function ($user) {
             return $user && $user->data_nascimento;
          });

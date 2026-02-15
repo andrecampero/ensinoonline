@@ -115,6 +115,27 @@ docker-compose exec ensinoonline php artisan view:cache
 
 ---
 
+## 🧪 Testes Automatizados
+
+O projeto conta com uma suíte de testes automatizados que cobrem as principais funcionalidades de autenticação, gestão de alunos e matrículas. Para garantir a integridade dos dados de desenvolvimento, os testes são configurados para rodar de forma isolada em um banco de dados **SQLite em memória**, não afetando o banco de dados principal (PostgreSQL).
+
+Para executar os testes, utilize um dos comandos abaixo:
+
+```bash
+# Utilizando o Laravel Sail
+./vendor/bin/sail test
+
+# OU diretamente com docker-compose
+docker-compose exec ensinoonline php artisan test
+```
+
+Os testes verificam:
+- **Autenticação:** Login com sucesso e proteção contra senhas incorretas.
+- **Alunos:** Cadastro de novos alunos e validação de emails únicos.
+- **Matrículas:** Vinculação de alunos a cursos e bloqueio de matrículas duplicadas.
+
+---
+
 ## Prints do Portal Administrativo - Ensino Online
 
 Aqui estão algumas capturas de tela das principais funcionalidades do sistema:

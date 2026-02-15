@@ -53,13 +53,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($disciplina->professor)
+                                    @if($disciplina->usuario)
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-sm bg-primary-soft rounded-circle text-primary me-2 d-flex align-items-center justify-content-center"
                                                 style="width: 24px; height: 24px; font-size: 10px; background-color: rgba(90, 90, 90, 0.1);">
-                                                {{ substr($disciplina->professor->name, 0, 1) }}
+                                                {{ substr($disciplina->usuario->name, 0, 1) }}
                                             </div>
-                                            <span>{{ $disciplina->professor->name }}</span>
+                                            <span>{{ $disciplina->usuario->name }}</span>
                                         </div>
                                     @else
                                         <span class="text-muted italic">Não definido</span>
@@ -134,9 +134,9 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Professor</label>
-                                <select name="professor_id" class="form-select rounded-3" required>
+                                <select name="usuarios_id" class="form-select rounded-3" required>
                                     @foreach($professores as $professor)
-                                        <option value="{{ $professor->id }}" {{ $disciplina->professor_id == $professor->id ? 'selected' : '' }}>
+                                        <option value="{{ $professor->id }}" {{ $disciplina->usuarios_id == $professor->id ? 'selected' : '' }}>
                                             {{ $professor->name }}
                                         </option>
                                     @endforeach
@@ -185,7 +185,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Professor *</label>
-                            <select name="professor_id" class="form-select rounded-3" required>
+                            <select name="usuarios_id" class="form-select rounded-3" required>
                                 <option value="">Selecione um professor...</option>
                                 @foreach($professores as $professor)
                                     <option value="{{ $professor->id }}">{{ $professor->name }}</option>

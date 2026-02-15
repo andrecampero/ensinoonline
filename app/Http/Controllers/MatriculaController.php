@@ -21,12 +21,12 @@ class MatriculaController extends Controller
             abort(403);
         }
 
-        $query = Matricula::with(['user', 'curso']);
+        $query = Matricula::with(['usuario', 'curso']);
 
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
-                $q->whereHas('user', function ($q) use ($search) {
+                $q->whereHas('usuario', function ($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
                         ->orWhere('email', 'like', "%{$search}%");
                 })->orWhereHas('curso', function ($q) use ($search) {
@@ -50,12 +50,12 @@ class MatriculaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'usuarios_id' => 'required|exists:usuarios,id',
             'curso_id' => 'required|exists:cursos,id',
         ]);
 
         // Prevent duplicate enrollment
-        $exists = \App\Models\Matricula::where('user_id', $request->user_id)
+        $exists = \App\Models\Matricula::where('usuarios_id', $request->usuarios_id)
             ->where('curso_id', $request->curso_id)
             ->exists();
 
@@ -71,7 +71,7 @@ class MatriculaController extends Controller
     public function update(Request $request, \App\Models\Matricula $matricula)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
+            'usuarios_id' => 'required|exists:usuarios,id',
             'curso_id' => 'required|exists:cursos,id',
         ]);
 

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matricula extends Model
 {
-    protected $fillable = ['user_id', 'curso_id'];
+    protected $fillable = ['usuarios_id', 'curso_id'];
 
-    public function user()
+    public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'usuarios_id');
     }
 
     public function curso()
