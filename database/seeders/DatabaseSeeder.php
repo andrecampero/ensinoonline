@@ -178,5 +178,13 @@ class DatabaseSeeder extends Seeder
             $matricula->fill($data);
             $matricula->save();
         }
+
+        // 6. Ajustar sequências do PostgreSQL (IMPORTANTE para evitar erro de ID duplicado)
+        if (config('database.default') === 'pgsql') {
+            $tables = ['perfis', 'usuarios', 'cursos', 'disciplinas', 'matriculas'];
+            foreach ($tables as $table) {
+                \DB::statement("SELECT setval(pg_get_serial_sequence('$table', 'id'), COALESCE((SELECT MAX(id) FROM $table) + 1, 1), false)");
+            }
+        }
     }
 }

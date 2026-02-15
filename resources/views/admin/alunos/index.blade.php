@@ -151,7 +151,7 @@
                <div class="modal-body py-4">
                   <div class="alert alert-info border-0 rounded-3 mb-3">
                      <i class="fas fa-info-circle me-2"></i> A senha padrão para novos alunos será:
-                     <strong>Mudar@@123</strong>
+                     <strong>Ensino@2026Online</strong>
                   </div>
                   <div class="mb-3">
                      <label class="form-label fw-semibold">Nome *</label>
